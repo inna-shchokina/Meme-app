@@ -32,7 +32,7 @@ const memeReducer = (state, action) => {
         ...state,
         gallery: action.payload,
       };
-    case "SET_SEARCH_TERM": // Добавляем обработку действия для изменения searchTerm
+    case "SET_SEARCH_TERM":
       return {
         ...state,
         searchTerm: action.payload,

@@ -2,19 +2,26 @@ import React from "react";
 import { useMemeContext } from "../components/MemeContext";
 import domtoimage from 'dom-to-image';
 
-export default function Home() {
+  function Home() {
   const { state, dispatch } = useMemeContext();
   const { currentMeme, text, memes, searchTerm } = state;
 
-  // Search Field Change Handler
+  // Enter text in search input
   const handleSearchChange = (e) => {
     dispatch({ type: "SET_SEARCH_TERM", payload: e.target.value });
   };
 
-  // Filtering memes by search query
+  // Filtering memes after entering text in search input
   const filteredMemes = searchTerm.length > 0
     ? memes.filter(meme => meme.name.toLowerCase().startsWith(searchTerm.toLowerCase()))
     : [];
+
+    // Meme Selection 
+  const handleMemeSelect = (meme) => {
+    dispatch({ type: "SET_CURRENT_MEME", payload: meme });
+    dispatch({ type: "SET_SEARCH_TERM", payload: '' });
+  };
+  if (!currentMeme) return null;
 
   // Transition between memes (next/previous)
   const nextOrPrevious = (e) => {
@@ -22,7 +29,6 @@ export default function Home() {
     const idx = memes.findIndex((el) => el === currentMeme);
     const nextMeme = idx + 1;
     const previousMeme = idx - 1;
-
     if (direction === "next") {
       dispatch({ type: "SET_CURRENT_MEME", payload: memes[nextMeme < memes.length ? nextMeme : 0] });
     } else {
@@ -41,7 +47,6 @@ export default function Home() {
 
   const addMemeToGallery = () => {
     const memeNode = document.getElementById('memeContainer');
-
     domtoimage.toPng(memeNode)
       .then((dataUrl) => {
         const newMeme = {
@@ -52,11 +57,9 @@ export default function Home() {
           topText: text.top,
           bottomText: text.bottom
         };
-
         const storedMemes = JSON.parse(localStorage.getItem('memes')) || [];
         const updatedMemes = [...storedMemes, newMeme];
         localStorage.setItem('memes', JSON.stringify(updatedMemes));
-
         dispatch({ type: "ADD_MEME_TO_GALLERY", payload: newMeme });
         alert('Meme added to gallery!');
       })
@@ -65,18 +68,10 @@ export default function Home() {
       });
   };
 
-  // Meme Selection Handler
-  const handleMemeSelect = (meme) => {
-    dispatch({ type: "SET_CURRENT_MEME", payload: meme });
-    dispatch({ type: "SET_SEARCH_TERM", payload: '' });
-  };
-
-  if (!currentMeme) return null;
-
   return (
     <div className="relative container flex flex-col items-center justify-center mx-auto mt-4">
       <h1 className="font-bold text-2xl text-gray-800 mt-10 mb-6">Generate a meme</h1>
-  
+     {/* Search */}
       <input
         type="text"
         placeholder="Search memes"
@@ -161,3 +156,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;
