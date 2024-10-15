@@ -6,17 +6,17 @@ export default function Home() {
   const { state, dispatch } = useMemeContext();
   const { currentMeme, text, memes, searchTerm } = state;
 
-  // Обработчик изменений в поле поиска
+  // Search Field Change Handler
   const handleSearchChange = (e) => {
     dispatch({ type: "SET_SEARCH_TERM", payload: e.target.value });
   };
 
-  // Фильтрация мемов по поисковому запросу
+  // Filtering memes by search query
   const filteredMemes = searchTerm.length > 0
     ? memes.filter(meme => meme.name.toLowerCase().startsWith(searchTerm.toLowerCase()))
     : [];
 
-  // Переход между мемами (следующий/предыдущий)
+  // Transition between memes (next/previous)
   const nextOrPrevious = (e) => {
     const direction = e.target.name;
     const idx = memes.findIndex((el) => el === currentMeme);
@@ -34,7 +34,7 @@ export default function Home() {
     dispatch({ type: "SET_CURRENT_MEME", payload: memes[Math.floor(Math.random() * memes.length)] });
   };
 
-  // Обработчик изменения текста мема
+  // Text Change Handler
   const handleChange = (e) => {
     dispatch({ type: "SET_TEXT", payload: { name: e.target.name, value: e.target.value } });
   };
@@ -65,10 +65,10 @@ export default function Home() {
       });
   };
 
-  // Обработчик выбора мема из списка
+  // Meme Selection Handler
   const handleMemeSelect = (meme) => {
     dispatch({ type: "SET_CURRENT_MEME", payload: meme });
-    dispatch({ type: "SET_SEARCH_TERM", payload: '' }); // Очистка поля поиска после выбора
+    dispatch({ type: "SET_SEARCH_TERM", payload: '' });
   };
 
   if (!currentMeme) return null;
@@ -84,7 +84,6 @@ export default function Home() {
         onChange={handleSearchChange}
         className="search-input border rounded p-4 mb-4 w-[600px]"/>
   
-      {/* Отображение выпадающего списка, если есть результат фильтрации */}
       {searchTerm && filteredMemes.length > 0 && (
         <ul className="absolute z-10 mt-1 bg-white border border-gray-300 rounded shadow-md">
           {filteredMemes.map(meme => (
@@ -135,8 +134,7 @@ export default function Home() {
               left: '50%',
               transform: 'translateX(-50%)',
               textShadow: '2px 2px 0 black',
-            }}
-          >
+            }}>
             {text.top}
           </h2>
           <img src={currentMeme.url} alt={currentMeme.name} className="meme w-[600px]" />
@@ -147,8 +145,7 @@ export default function Home() {
               left: '50%',
               transform: 'translateX(-50%)',
               textShadow: '2px 2px 0 black',
-            }}
-          >
+            }}>
             {text.bottom}
           </h2>
         </div>
