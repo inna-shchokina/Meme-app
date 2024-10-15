@@ -133,7 +133,11 @@ export default function Home() {
               top: '20px',
               left: '50%',
               transform: 'translateX(-50%)',
-              textShadow: '2px 2px 0 black',
+              textShadow: `
+             1px 1px 0 black, 
+            -1px 1px 0 black, 
+             1px -1px 0 black,  
+            -1px -1px 0 black`,
             }}>
             {text.top}
           </h2>
@@ -144,7 +148,11 @@ export default function Home() {
               bottom: '20px',
               left: '50%',
               transform: 'translateX(-50%)',
-              textShadow: '2px 2px 0 black',
+              textShadow: `
+             1px 1px 0 black, 
+            -1px 1px 0 black, 
+             1px -1px 0 black,  
+            -1px -1px 0 black`,
             }}>
             {text.bottom}
           </h2>
