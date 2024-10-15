@@ -75,14 +75,14 @@ export default function Home() {
 
   return (
     <div className="relative container flex flex-col items-center justify-center mx-auto mt-4">
-      <h1 className="font-bold text-2xl text-gray-800 mt-10 mb-10">Generate a meme</h1>
+      <h1 className="font-bold text-2xl text-gray-800 mt-10 mb-6">Generate a meme</h1>
   
       <input
         type="text"
         placeholder="Search memes"
         value={searchTerm}
         onChange={handleSearchChange}
-        className="search-input border rounded p-4 mb-4 w-[600px]"/>
+        className="search-input border rounded p-4 mb-2 w-[600px]"/>
   
       {searchTerm && filteredMemes.length > 0 && (
         <ul className="absolute z-10 mt-1 bg-white border border-gray-300 rounded shadow-md">
@@ -97,7 +97,7 @@ export default function Home() {
         </ul>
       )}
   
-      <div className="bg-gray-100 p-6 rounded-lg mt-4 w-[600px]">
+      <div className="bg-gray-100 p-6 rounded-md mt-4 w-[600px]">
         <form className="textForm mb-4 flex flex-row items-center justify-between">
           <input
             type="text"
@@ -105,24 +105,24 @@ export default function Home() {
             name="top"
             value={text.top}
             onChange={handleChange}
-            className="border rounded p-4 mb-2 w-64"/>
+            className="border rounded p-4 mb-2 w-[270px]"/>
           <input
             type="text"
             placeholder="bottom"
             name="bottom"
             value={text.bottom}
             onChange={handleChange}
-            className="border rounded p-4 mb-2 w-64"/>
+            className="border rounded p-4 mb-2 w-[270px]"/>
         </form>
   
         <div className="controlButtons flex space-x-4 mb-4">
-          <button onClick={nextOrPrevious} name="previous" className="bg-gray-800 text-white rounded p-4 w-32 hover:bg-gray-700">
+          <button onClick={nextOrPrevious} name="previous" className="bg-gray-800 text-white rounded p-2 w-36 hover:bg-gray-700">
             Previous</button>
-          <button onClick={random} className="bg-gray-800 text-white rounded p-4 w-32 hover:bg-gray-700">
+          <button onClick={random} className="bg-gray-800 text-white rounded p-2 w-36 hover:bg-gray-700">
             Random</button>
-          <button onClick={nextOrPrevious} name="next" className="bg-gray-800 text-white rounded p-4 w-32 hover:bg-gray-700">
+          <button onClick={nextOrPrevious} name="next" className="bg-gray-800 text-white rounded p-2 w-36 hover:bg-gray-700">
             Next</button>
-          <button onClick={addMemeToGallery} className="bg-green-500 text-white rounded p-4 w-32 hover:bg-green-600">
+          <button onClick={addMemeToGallery} className="bg-green-500 text-white rounded p-2 w-36 hover:bg-green-600">
             Add Meme</button>
         </div>
   

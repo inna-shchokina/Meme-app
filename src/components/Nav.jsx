@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom';
 
 const Nav = () => {
   return (
-    <nav className="bg-white shadow-md p-4">
+    <nav className="bg-gray-800 shadow-md p-4">
       <div className="flex justify-center">
         <Link 
-          className="mr-4 text-sm uppercase font-semibold text-gray-700 hover:bg-gray-100 px-3 py-2 rounded transition duration-300"
+          className="mr-4 text-sm uppercase font-semibold text-white hover:bg-gray-500 px-3 py-2 rounded transition duration-300"
           to="/"
         >
           Home
         </Link>
         <Link 
-          className="text-sm uppercase text-gray-700 font-semibold hover:bg-gray-100 px-3 py-2 rounded transition duration-300"
+          className="text-sm uppercase text-white font-semibold hover:bg-gray-500 px-3 py-2 rounded transition duration-300"
           to="/gallery"
         >
           Gallery
