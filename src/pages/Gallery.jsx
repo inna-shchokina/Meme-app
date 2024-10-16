@@ -15,7 +15,7 @@ const Gallery = () => {
     });
   
     // Update the gallery with valid memes
-    dispatch({ type: 'SET_GALLERY', payload: validMemes });
+    dispatch({ type: 'set_gallery', payload: validMemes });
     localStorage.setItem('memes', JSON.stringify(validMemes));
   }, [dispatch]);
 

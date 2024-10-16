@@ -8,7 +8,7 @@ import domtoimage from 'dom-to-image';
 
   // Enter text in search input
   const handleSearchChange = (e) => {
-    dispatch({ type: "SET_SEARCH_TERM", payload: e.target.value });
+    dispatch({ type: "set_search_term", payload: e.target.value });
   };
 
   // Filtering memes after entering text in search input
@@ -18,8 +18,8 @@ import domtoimage from 'dom-to-image';
 
     // Meme Selection 
   const handleMemeSelect = (meme) => {
-    dispatch({ type: "SET_CURRENT_MEME", payload: meme });
-    dispatch({ type: "SET_SEARCH_TERM", payload: '' });
+    dispatch({ type: "set_current_meme", payload: meme });
+    dispatch({ type: "set_search_term", payload: '' });
   };
   if (!currentMeme) return null;
 
@@ -30,19 +30,19 @@ import domtoimage from 'dom-to-image';
     const nextMeme = idx + 1;
     const previousMeme = idx - 1;
     if (direction === "next") {
-      dispatch({ type: "SET_CURRENT_MEME", payload: memes[nextMeme < memes.length ? nextMeme : 0] });
+      dispatch({ type: "set_current_meme", payload: memes[nextMeme < memes.length ? nextMeme : 0] });
     } else {
-      dispatch({ type: "SET_CURRENT_MEME", payload: memes[previousMeme >= 0 ? previousMeme : memes.length - 1] });
+      dispatch({ type: "set_current_meme", payload: memes[previousMeme >= 0 ? previousMeme : memes.length - 1] });
     }
   };
 
   const random = () => {
-    dispatch({ type: "SET_CURRENT_MEME", payload: memes[Math.floor(Math.random() * memes.length)] });
+    dispatch({ type: "set_current_meme", payload: memes[Math.floor(Math.random() * memes.length)] });
   };
 
   // Text Change Handler
   const handleChange = (e) => {
-    dispatch({ type: "SET_TEXT", payload: { name: e.target.name, value: e.target.value } });
+    dispatch({ type: "set_text", payload: { name: e.target.name, value: e.target.value } });
   };
 
   const addMemeToGallery = () => {

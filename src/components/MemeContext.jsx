@@ -13,26 +13,26 @@ const initialState = {
 
 const memeReducer = (state, action) => {
   switch (action.type) {
-    case "SET_MEMES":
+    case "set_memes":
       return { ...state, memes: action.payload };
-    case "SET_CURRENT_MEME":
+    case "set_current_meme":
       return { ...state, currentMeme: action.payload };
-    case "SET_TEXT":
+    case "set_text":
       return {
         ...state,
         text: { ...state.text, [action.payload.name]: action.payload.value },
       };
-    case "ADD_MEME_TO_GALLERY":
+    case "add_meme_to_gallery":
       return {
         ...state,
         gallery: [...state.gallery, action.payload],
       };
-    case "SET_GALLERY":
+    case "set_gallery":
       return {
         ...state,
         gallery: action.payload,
       };
-    case "SET_SEARCH_TERM":
+    case "set_search_term":
       return {
         ...state,
         searchTerm: action.payload,
@@ -52,9 +52,9 @@ export const MemeProvider = ({ children }) => {
         const allMemes = response.data.data.memes;
         const storedGallery = JSON.parse(localStorage.getItem('memes')) || [];
   
-        dispatch({ type: "SET_MEMES", payload: allMemes });
-        dispatch({ type: "SET_CURRENT_MEME", payload: allMemes[Math.floor(Math.random() * allMemes.length)] });
-        dispatch({ type: "ADD_MEME_TO_GALLERY", payload: storedGallery });
+        dispatch({ type: "set_memes", payload: allMemes });
+        dispatch({ type: "set_current_meme", payload: allMemes[Math.floor(Math.random() * allMemes.length)] });
+        dispatch({ type: "add_meme_to_gallery", payload: storedGallery });
       } catch (error) {
         console.error(error);
       }
