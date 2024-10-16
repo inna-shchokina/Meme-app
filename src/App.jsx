@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home";
-import { MemeProvider } from "./components/MemeContext";
+import { MemeProvider } from "./MemeContext";
 import Gallery from "./pages/Gallery";
 import Nav from './components/Nav';
 

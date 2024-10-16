@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useMemeContext } from '../components/MemeContext';
+import { useMemeContext } from '../MemeContext';
 
 const Gallery = () => {
   const { state, dispatch } = useMemeContext();
