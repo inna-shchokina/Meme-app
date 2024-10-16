@@ -11,6 +11,11 @@ import domtoimage from 'dom-to-image';
     dispatch({ type: "set_search_term", payload: e.target.value });
   };
 
+  // Filtering memes after entering text in search input
+  const filteredMemes = searchTerm
+    ? memes.filter(meme => meme.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    : [];
+
     // Meme Selection 
   const handleMemeSelect = (meme) => {
     dispatch({ type: "set_current_meme", payload: meme });
@@ -74,13 +79,13 @@ import domtoimage from 'dom-to-image';
         onChange={handleSearchChange}
         className="search-input border rounded p-4 mb-2 w-[600px]"/>
   
-  {searchTerm && memes.filter(meme => meme.name.toLowerCase().includes(searchTerm.toLowerCase())).length > 0 && (
-        <ul className="absolute bg-white border rounded shadow-md">
-          {memes.filter(meme => meme.name.toLowerCase().includes(searchTerm.toLowerCase())).map(meme => (
+      {searchTerm && filteredMemes.length > 0 && (
+        <ul className="absolute z-10 mt-1 bg-white border border-gray-300 rounded shadow-md">
+          {filteredMemes.map(meme => (
             <li
               key={meme.id}
               onClick={() => handleMemeSelect(meme)}
-              className="p-2 cursor-pointer hover:bg-gray-200">
+              className="meme-item p-2 hover:bg-gray-200 cursor-pointer">
               {meme.name}
             </li>
           ))}
