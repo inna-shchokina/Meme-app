@@ -1,5 +1,4 @@
 import React, { createContext, useReducer, useEffect } from "react";
-import axios from "axios";
 
 const MemeContext = createContext();
 
@@ -48,15 +47,19 @@ export const MemeProvider = ({ children }) => {
   useEffect(() => {
     const fetchMemes = async () => {
       try {
-        const response = await axios.get("https://api.imgflip.com/get_memes");
-        const allMemes = response.data.data.memes;
+        const response = await fetch("https://api.imgflip.com/get_memes");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        const allMemes = data.data.memes; 
         const storedGallery = JSON.parse(localStorage.getItem('memes')) || [];
   
         dispatch({ type: "set_memes", payload: allMemes });
         dispatch({ type: "set_current_meme", payload: allMemes[Math.floor(Math.random() * allMemes.length)] });
         dispatch({ type: "add_meme_to_gallery", payload: storedGallery });
       } catch (error) {
-        console.error(error);
+        console.error("Mistake:", error);
       }
     };
   
