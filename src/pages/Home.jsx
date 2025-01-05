@@ -2,28 +2,24 @@ import React from "react";
 import { useMemeContext } from "../MemeContext";
 import domtoimage from 'dom-to-image';
 
-  function Home() {
+function Home() {
   const { state, dispatch } = useMemeContext();
   const { currentMeme, text, memes, searchTerm } = state;
 
-  // Enter text in search input
   const handleSearchChange = (e) => {
     dispatch({ type: "set_search_term", payload: e.target.value });
   };
 
-  // Filtering memes after entering text in search input
   const filteredMemes = searchTerm
-    ? memes.filter(meme => meme.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    ? memes.filter(meme => meme.name.toLowerCase().startsWith(searchTerm.toLowerCase()))
     : [];
 
-    // Meme Selection 
   const handleMemeSelect = (meme) => {
     dispatch({ type: "set_current_meme", payload: meme });
     dispatch({ type: "set_search_term", payload: '' });
   };
   if (!currentMeme) return null;
 
-  // Transition between memes (next/previous)
   const nextOrPrevious = (e) => {
     const direction = e.target.name;
     const idx = memes.findIndex((el) => el === currentMeme);
@@ -40,7 +36,6 @@ import domtoimage from 'dom-to-image';
     dispatch({ type: "set_current_meme", payload: memes[Math.floor(Math.random() * memes.length)] });
   };
 
-  // Text Change Handler
   const handleChange = (e) => {
     dispatch({ type: "set_text", payload: { name: e.target.name, value: e.target.value } });
   };
@@ -71,56 +66,80 @@ import domtoimage from 'dom-to-image';
   return (
     <div className="relative container flex flex-col items-center justify-center mx-auto mt-4">
       <h1 className="font-bold text-2xl text-gray-800 mt-10 mb-6">Generate a meme</h1>
-     {/* Search */}
-      <input
-        type="text"
-        placeholder="Search memes"
-        value={searchTerm}
-        onChange={handleSearchChange}
-        className="search-input border rounded p-4 mb-2 w-[600px]"/>
-  
-      {searchTerm && filteredMemes.length > 0 && (
-        <ul className="absolute z-10 mt-1 bg-white border border-gray-300 rounded shadow-md">
-          {filteredMemes.map(meme => (
-            <li
-              key={meme.id}
-              onClick={() => handleMemeSelect(meme)}
-              className="meme-item p-2 hover:bg-gray-200 cursor-pointer">
-              {meme.name}
-            </li>
-          ))}
-        </ul>
-      )}
-  
-      <div className="bg-gray-100 p-6 rounded-md mt-4 w-[600px]">
-        <form className="textForm mb-4 flex flex-row items-center justify-between">
+      
+      <div className="relative w-full max-w-xl">
+        <input
+          type="text"
+          placeholder="Search memes"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className="border rounded p-4 mb-2 w-full"
+          aria-label="Search memes"
+        />
+      
+        {searchTerm && filteredMemes.length > 0 && (
+          <ul className="absolute z-10 mt-1 bg-white border border-gray-300 rounded shadow-md w-full max-h-60 overflow-y-auto">
+            {filteredMemes.map(meme => (
+              <li
+                key={meme.id}
+                onClick={() => handleMemeSelect(meme)}
+                className="p-2 hover:bg-gray-200 cursor-pointer">
+                {meme.name}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      
+      <div className="bg-gray-100 p-6 rounded-md mt-4 w-full max-w-xl">
+        <form className="textForm mb-4 flex flex-col sm:flex-row items-center justify-between">
           <input
             type="text"
             placeholder="top"
             name="top"
             value={text.top}
             onChange={handleChange}
-            className="border rounded p-4 mb-2 w-[270px]"/>
+            className="border rounded p-4 mb-2 sm:mb-0 sm:mr-2 w-full sm:w-1/2"
+          />
           <input
             type="text"
             placeholder="bottom"
             name="bottom"
             value={text.bottom}
             onChange={handleChange}
-            className="border rounded p-4 mb-2 w-[270px]"/>
+            className="border rounded p-4 mb-2 sm:mb-0 sm:ml-2 w-full sm:w-1/2"
+          />
         </form>
-  
-        <div className="controlButtons flex space-x-4 mb-4">
-          <button onClick={nextOrPrevious} name="previous" className="bg-gray-800 text-white rounded p-2 w-36 hover:bg-gray-700">
-            Previous</button>
-          <button onClick={random} className="bg-gray-800 text-white rounded p-2 w-36 hover:bg-gray-700">
-            Random</button>
-          <button onClick={nextOrPrevious} name="next" className="bg-gray-800 text-white rounded p-2 w-36 hover:bg-gray-700">
-            Next</button>
-          <button onClick={addMemeToGallery} className="bg-green-500 text-white rounded p-2 w-36 hover:bg-green-600">
-            Add Meme</button>
+      
+        <div className="controlButtons flex flex-nowrap justify-start space-x-4 mb-4 w-full overflow-x-auto">
+          <button
+            onClick={nextOrPrevious}
+            name="previous"
+            className="bg-gray-800 text-white rounded p-2 w-36 hover:bg-gray-700"
+          >
+            Previous
+          </button>
+          <button
+            onClick={random}
+            className="bg-gray-800 text-white rounded p-2 w-36 hover:bg-gray-700"
+          >
+            Random
+          </button>
+          <button
+            onClick={nextOrPrevious}
+            name="next"
+            className="bg-gray-800 text-white rounded p-2 w-36 hover:bg-gray-700"
+          >
+            Next
+          </button>
+          <button
+            onClick={addMemeToGallery}
+            className="bg-green-500 text-white rounded p-2 w-36 hover:bg-green-600"
+          >
+            Add Meme
+          </button>
         </div>
-  
+      
         <div className="memeContainer relative flex flex-col items-center" id="memeContainer">
           <h2 
             className="memeText top absolute text-white text-4xl font-bold"
@@ -129,14 +148,14 @@ import domtoimage from 'dom-to-image';
               left: '50%',
               transform: 'translateX(-50%)',
               textShadow: `
-             1px 1px 0 black, 
-            -1px 1px 0 black, 
-             1px -1px 0 black,  
-            -1px -1px 0 black`,
+                1px 1px 0 black, 
+                -1px 1px 0 black, 
+                1px -1px 0 black,  
+                -1px -1px 0 black`,
             }}>
             {text.top}
           </h2>
-          <img src={currentMeme.url} alt={currentMeme.name} className="meme w-[600px]" />
+          <img src={currentMeme.url} alt={currentMeme.name} className="meme w-full max-w-xl" />
           <h2 
             className="memeText bottom absolute text-white text-4xl font-bold"
             style={{ 
@@ -144,10 +163,10 @@ import domtoimage from 'dom-to-image';
               left: '50%',
               transform: 'translateX(-50%)',
               textShadow: `
-             1px 1px 0 black, 
-            -1px 1px 0 black, 
-             1px -1px 0 black,  
-            -1px -1px 0 black`,
+                1px 1px 0 black, 
+                -1px 1px 0 black, 
+                1px -1px 0 black,  
+                -1px -1px 0 black`,
             }}>
             {text.bottom}
           </h2>
