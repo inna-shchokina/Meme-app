@@ -28,4 +28,4 @@ It is the **Meme Generator** project. This web application allows users to creat
 <br>
 <a href="https://github.com/inna-shchokina/Meme-app/blob/main/Meme_app_screens/meme_app_3.jpg?raw=true" target="_blank" rel="noopener noreferrer">View Interface Screenshot 3</a>
 <br>
-<a href="https://github.com/inna-shchokina/Meme-app/blob/main/Meme_app_screens/meme_app_4.jpg?raw=true" target="_blank" rel="noopener noreferrer">View Interface Screenshot 3</a>  
+<a href="https://github.com/inna-shchokina/Meme-app/blob/main/Meme_app_screens/meme_app_4.jpg?raw=true" target="_blank" rel="noopener noreferrer">View Interface Screenshot 4</a>  
