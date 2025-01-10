@@ -22,10 +22,11 @@ It is the **Meme Generator** project. This web application allows users to creat
 
 ### 📷 Screenshots
 
-<a href="https://github.com/inna-shchokina/Meme-app/blob/main/Meme_app_screens/meme_app_1.jpg?raw=true" rel="noopener noreferrer">View Interface Screenshot 1</a> 
+<a href="https://github.com/inna-shchokina/Meme-app/blob/main/Meme_app_screens/meme_app_1.jpg?raw=true" rel="noopener noreferrer">View Home Page</a> 
 <br>
-<a href="https://github.com/inna-shchokina/Meme-app/blob/main/Meme_app_screens/meme_app_2.jpg?raw=true" target="_blank" rel="noopener noreferrer">View Interface Screenshot 2</a>
+<a href="https://github.com/inna-shchokina/Meme-app/blob/main/Meme_app_screens/meme_app_2.jpg?raw=true" target="_blank" rel="noopener noreferrer">View Home Page with text</a>
 <br>
-<a href="https://github.com/inna-shchokina/Meme-app/blob/main/Meme_app_screens/meme_app_3.jpg?raw=true" target="_blank" rel="noopener noreferrer">View Interface Screenshot 3</a>
+<a href="https://github.com/inna-shchokina/Meme-app/blob/main/Meme_app_screens/meme_app_4.jpg?raw=true" target="_blank" rel="noopener noreferrer">View Home Paje with searching</a>
 <br>
-<a href="https://github.com/inna-shchokina/Meme-app/blob/main/Meme_app_screens/meme_app_4.jpg?raw=true" target="_blank" rel="noopener noreferrer">View Interface Screenshot 4</a>  
+<a href="https://github.com/inna-shchokina/Meme-app/blob/main/Meme_app_screens/meme_app_3.jpg?raw=true" target="_blank" rel="noopener noreferrer">View Gallery Page</a>
+  
